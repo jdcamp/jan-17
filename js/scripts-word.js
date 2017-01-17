@@ -1,5 +1,9 @@
 $(function() {
+  var clearOutputText = function() {
+    (".output-stream-word-hide").text("");
+  }
   var vowelReplacer = function(str) {
+    //clearOutputText();
     for (var i = 0; i < str.length; i++) {
       var test = str.charAt(i).toUpperCase();
       switch (test) {
@@ -17,11 +21,13 @@ $(function() {
           str = subStr1 + subStr2 + subStr3;
           break;
         default:
-
       }
     }
-    alert(str);
+    return str;
   }
-  vowelReplacer("Testeoiup");
-
+  $("form").submit(function(event) {
+    var inputText = $("input#user-text-input").val();
+    $(".output-stream-word-hide").text(vowelReplacer(inputText));
+    event.preventDefault();
+  });
 })
